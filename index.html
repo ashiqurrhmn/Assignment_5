@@ -23,9 +23,31 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/styles.css" />
   </head>
-  <body> 
-    Hi there
+  <body>
+    <section id="login" class="min-h-screen flex items-center">
+      <div
+        class="w-[520px] mx-auto p-8 flex flex-col items-center rounded-lg shadow-2xl"
+      >
+        <img src="./assets/github-logo.png" alt="" class="w-[100px] mb-6" />
+        <h3 class="text-2xl font-semibold">GitHub Issues Tracker</h3>
+        <p class="text-[#64748B]">Sign in to manage your issues</p>
+        <fieldset
+          class="fieldset rounded-box w-full p-4"
+        >
+        
+          <label class="label font-medium text-black text-[16px]">Username</label>
+          <input type="text" class="input w-full" placeholder="Enter Username" />
+          <p class="text-[#4A00FF] text-[14px]">Default: admin</p>
+
+          <label class="label font-medium text-black text-[16px]">Password</label>
+          <input type="password" class="input w-full" placeholder="Enter Password" />
+          <p class="text-[#4A00FF] text-[14px]">Default: admin123</p>
+
+          <button class="btn btn-primary mt-4">Sign In</button>
+        </fieldset>
+      </div>
+    </section>
   </body>
 </html>

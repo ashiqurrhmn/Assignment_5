@@ -1,10 +1,25 @@
 const cardsContainer = document.getElementById("card-container");
+const countCards = document.getElementById("count-cards");
+const loadingSpinner = document.getElementById("loading-spinner");
+const allBtn = document.getElementById("all-btn");
+const openBtn = document.getElementById("open-btn");
+const closedBtn = document.getElementById("closed-btn");
+
+function showLoading(){
+    loadingSpinner.classList.remove("hidden");
+    cardsContainer.innerHTML = "";
+}
+function hideLoading(){
+    loadingSpinner.classList.add("hidden");
+}
 
 async function loadCards() {
+  showLoading();  
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const items = await res.json();
+  hideLoading();
   displayCards(items.data);
 }
 function displayCards(cards) {

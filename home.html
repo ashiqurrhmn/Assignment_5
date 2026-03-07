@@ -91,9 +91,9 @@
       id=""
       class="bg-white w-10/12 mx-auto mt-[60px] p-4 rounded-lg shadow"
     >
-      <button class="btn btn-primary w-[120px]">All</button>
-      <button class="btn text-[#64748B] w-[120px]">Open</button>
-      <button class="btn text-[#64748B] w-[120px]">Closed</button>
+      <button id="all-btn" class="btn btn-primary w-[120px]">All</button>
+      <button id="open-btn" class="btn text-[#64748B] w-[120px]">Open</button>
+      <button id="closed-btn" class="btn text-[#64748B] w-[120px]">Closed</button>
     </section>
 
     <section class="bg-white w-10/12 mx-auto mt-2.5 mb-0.5 p-4 rounded-t-lg shadow">
@@ -101,7 +101,9 @@
         <div class="flex gap-1">
           <img src="./assets/Aperture.png" alt="" class="w-[50px] h-[50px]" />
           <div>
-            <h3 class="text-[20px] font-bold">50 Issues</h3>
+            <div id="count-cards">
+            <h3 class="text-[20px] font-bold">0 Issues</h3>
+            </div>
             <p class="text-[#64748B]">Track and manage your project issues</p>
           </div>
         </div>
@@ -164,8 +166,11 @@
       </div>
       </div>
       </div> -->
-      
     </section>
+    <div id="loading-spinner" class="h-[60vh] hidden flex justify-center items-center">
+      <span class="loading loading-spinner loading-xl"></span>
+    </div>
+     
 
     <script src="script/home.js"></script>
   </body>

@@ -85,4 +85,28 @@ function displayCards(cards) {
   });
 }
 
+function resetButtons() {
+  allBtn.classList.remove("btn-primary");
+  openBtn.classList.remove("btn-primary");
+  closedBtn.classList.remove("btn-primary");
+}
+
+allBtn.addEventListener("click", function () {
+  resetButtons();
+  allBtn.classList.add("btn-primary");
+});
+
+openBtn.addEventListener("click", function () {
+  resetButtons();
+  openBtn.classList.remove("text-[#64748B]");
+  openBtn.classList.add("btn-primary");
+});
+
+closedBtn.addEventListener("click", function () {
+  resetButtons();
+  closedBtn.classList.remove("text-[#64748B]");
+  closedBtn.classList.add("btn-primary");
+});
+
+
 loadCards();

@@ -5,6 +5,8 @@ const allBtn = document.getElementById("all-btn");
 const openBtn = document.getElementById("open-btn");
 const closedBtn = document.getElementById("closed-btn");
 
+let allCards = [];
+
 function showLoading(){
     loadingSpinner.classList.remove("hidden");
     cardsContainer.innerHTML = "";
@@ -20,10 +22,11 @@ async function loadCards() {
   );
   const items = await res.json();
   hideLoading();
+  allCards = items.data;
   displayCards(items.data);
 }
 function displayCards(cards) {
-  console.log(cards);
+  cardsContainer.innerHTML = "";
   cards.forEach((card) => {
     const data = document.createElement("div");
     data.innerHTML = `
@@ -94,18 +97,23 @@ function resetButtons() {
 allBtn.addEventListener("click", function () {
   resetButtons();
   allBtn.classList.add("btn-primary");
+  displayCards(allCards);
 });
 
 openBtn.addEventListener("click", function () {
   resetButtons();
   openBtn.classList.remove("text-[#64748B]");
   openBtn.classList.add("btn-primary");
+  const openCards = allCards.filter((card) => card.status === "open");
+  displayCards(openCards);
 });
 
 closedBtn.addEventListener("click", function () {
   resetButtons();
   closedBtn.classList.remove("text-[#64748B]");
   closedBtn.classList.add("btn-primary");
+  const closedCards = allCards.filter((card) => card.status === "closed");
+  displayCards(closedCards);
 });
 
 

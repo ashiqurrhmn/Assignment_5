@@ -27,6 +27,7 @@ async function loadCards() {
 }
 function displayCards(cards) {
   cardsContainer.innerHTML = "";
+  countCards.innerHTML = `<h3 class="text-[20px] font-bold">${cards.length} Issues</h3>`;
   cards.forEach((card) => {
     const data = document.createElement("div");
     data.innerHTML = `
@@ -102,7 +103,6 @@ allBtn.addEventListener("click", function () {
 
 openBtn.addEventListener("click", function () {
   resetButtons();
-  openBtn.classList.remove("text-[#64748B]");
   openBtn.classList.add("btn-primary");
   const openCards = allCards.filter((card) => card.status === "open");
   displayCards(openCards);
@@ -110,7 +110,6 @@ openBtn.addEventListener("click", function () {
 
 closedBtn.addEventListener("click", function () {
   resetButtons();
-  closedBtn.classList.remove("text-[#64748B]");
   closedBtn.classList.add("btn-primary");
   const closedCards = allCards.filter((card) => card.status === "closed");
   displayCards(closedCards);

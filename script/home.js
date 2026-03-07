@@ -4,6 +4,10 @@ const loadingSpinner = document.getElementById("loading-spinner");
 const allBtn = document.getElementById("all-btn");
 const openBtn = document.getElementById("open-btn");
 const closedBtn = document.getElementById("closed-btn");
+const searchIssue = document.getElementById("search-issue");
+const searchBtn = document.getElementById("search-btn");
+const searchIssueSmall = document.getElementById("search-issue-small");
+const searchBtnSmall = document.getElementById("search-btn-small");
 
 let allCards = [];
 
@@ -113,8 +117,9 @@ closedBtn.addEventListener("click", function () {
 });
 
 async function loadModalData(id) {
-
-  const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`,
+  );
   const result = await res.json();
 
   const card = result.data;
@@ -181,4 +186,28 @@ async function loadModalData(id) {
   card_modal.showModal();
 }
 
+async function searchIssues() {
+  const searchText = searchIssue.value.trim();
+  if (!searchText) return;
+  showLoading();
+
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`,
+  );
+  const result = await res.json();
+
+  hideLoading();
+  displayCards(result.data);
+}
+
 loadCards();
+
+searchBtn.addEventListener("click", function () {
+  searchIssues();
+
+});
+
+searchBtnSmall.addEventListener("click", function(){
+  searchIssue.value = searchIssueSmall.value;
+  searchIssues();
+});

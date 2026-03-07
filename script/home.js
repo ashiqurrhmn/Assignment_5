@@ -40,11 +40,11 @@ function displayCards(cards) {
               : card.priority === "medium"
                 ? "text-yellow-500 bg-yellow-100"
                 : "text-gray-500 bg-gray-100"
-          } px-4 rounded-3xl text-center">
+          } px-4 rounded-3xl text-center text-[14px]">
             ${card.priority}
           </h4>
         </div>
-        <p class="text-[14px] font-semibold">
+        <p class="text-[14px] font-semibold line-clamp-1">
           ${card.title}
         </p>
         <p class="text-[12px] text-[#64748B] line-clamp-2">
@@ -53,17 +53,17 @@ function displayCards(cards) {
         <div class="flex gap-2">
           <div class="flex gap-1">
             <h4
-              class="text-[#D97706] bg-[#FFF8DB] rounded-3xl text-center flex items-center gap-1 px-2"
+              class="${card.labels[0] === 'bug' ? 'text-red-500 bg-red-100' : card.labels[0] === 'enhancement' ? 'text-green-500 bg-green-100' : 'text-blue-500 bg-blue-100'} text-[12px] rounded-3xl text-center flex items-center gap-1 px-2"
             >
-              ${card.labels[0]}
+              ${card.labels[0] === "bug" ? '<i class="fa-solid fa-bug"></i>' : card.labels[0] === 'enhancement' ? '<i class="fa-solid fa-snowflake"></i>' : '<i class="fa-regular fa-clipboard"></i>'} ${card.labels[0]}
             </h4>
           </div>
           <div class="flex gap-1">
           ${
             card.labels[1]
               ? `
-            <h4 class="text-[#D97706] bg-[#FFF8DB] rounded-3xl text-center flex items-center gap-1 px-2">
-              ${card.labels[1]}
+            <h4 class="text-[#D97706] bg-[#FFF8DB] text-[12px] rounded-3xl text-center flex items-center gap-1 px-2">
+             <i class="fa-solid fa-life-ring"></i> ${card.labels[1]}
             </h4>
             `
               : ""
@@ -73,16 +73,10 @@ function displayCards(cards) {
         </div>
       </div>
       <div class="mt-0.5 bg-white rounded-b-lg p-3 shadow">
-        <div class="flex justify-between">
-          <div>
+          
         <p class="text-[12px] text-[#64748B]">#${card.id} by ${card.author}</p>
-        <p class="text-[12px] text-[#64748B]">Assignee: ${card.assignee || "Unassigned"}</p>
-        </div>
-        <div>
-        <p class="text-[12px] text-[#64748B]">Created: ${card.createdAt}</p>
-        <p class="text-[12px] text-[#64748B]">Updated: ${card.updatedAt}</p>
-        </div>
-      </div>
+        <p class="text-[12px] text-[#64748B]">${card.createdAt}</p>
+        
       </div>
     `;
     cardsContainer.append(data);

@@ -188,7 +188,10 @@ async function loadModalData(id) {
 
 async function searchIssues() {
   const searchText = searchIssue.value.trim();
-  if (!searchText) return;
+  if (!searchText) {
+    displayCards(allCards);
+    return;
+  } 
   showLoading();
 
   const res = await fetch(
@@ -208,6 +211,16 @@ searchBtn.addEventListener("click", function () {
 });
 
 searchBtnSmall.addEventListener("click", function(){
+  searchIssue.value = searchIssueSmall.value;
+  searchIssues();
+
+});
+
+searchIssue.addEventListener("input", function () {
+  searchIssues();
+});
+
+searchIssueSmall.addEventListener("input", function () {
   searchIssue.value = searchIssueSmall.value;
   searchIssues();
 });
